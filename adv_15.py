@@ -7,7 +7,6 @@ def find_turn_num(seq_num):
     game_num_seq = dict((num, index + 1) for index, num in enumerate(game_nums))
     prev_turn = game_nums[-1]
     cur_turn = None
-    new_nums = []
     for ii in range(len(game_nums) + 1, seq_num + 1):
         if prev_turn not in game_num_seq or game_num_seq[prev_turn] == ii - 1:
             cur_turn = 0
