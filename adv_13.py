@@ -23,6 +23,7 @@ def find_earliest_seq():
     increment = 1
     for ii in range(2, len(bus_ids) + 1):
         working_buses = bus_index_pairs[:ii]
+        print (working_buses)
         prev_match = 0
         while  True:
             for bus_id, offset in working_buses:
@@ -32,9 +33,12 @@ def find_earliest_seq():
             else:
                 if prev_match == 0:
                     prev_match = cur_time
+                    if ii == len(bus_ids):
+                        break
                     cur_time += increment
                 else:
                     increment = cur_time - prev_match
+                    print (cur_time, increment)
                     break
 
     return cur_time
