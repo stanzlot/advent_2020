@@ -26,16 +26,19 @@ for ticket in near_by_tickets:
     if is_valid_ticket:
         valid_near_by.append(ticket)
 
-field_id_by_type = defaultdict(defaultdict(0))
+field_id_by_type = defaultdict(defaultdict)
 for ticket in valid_near_by:
     for ii in range(len(ticket)):
         field = ticket[ii]
         for field_name, (lower, upper) in rules.items():
             if field in lower or field in upper:
-                # if not ii in field_id_by_type:
-                    # field_id_by_type[ii] = {}
+                if not ii in field_id_by_type:
+                    field_id_by_type[ii] = {}
 
-                field_id_by_type[ii][field_name] += 1
+                if not field_name in field_id_by_type[ii]:
+                    field_id_by_type[ii][field_name] = 1
+                else:
+                    field_id_by_type[ii][field_name] += 1
 
 id_by_pos = []
 for field_id, field_valid_count in field_id_by_type.items():
